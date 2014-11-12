@@ -1,0 +1,65 @@
+= motion-hockeyapp-task
+
+motion-hockeyapp-task allows RubyMotion projects to easily upload
+builds to the HockeyApp platform.
+
+*Note: This gem does _not_ add HockeySDK to your project.*
+If you need that functionality, check https://github.com/joenoon/motion-hockeyapp
+
+== Installation
+
+  gem 'motion-hockeyapp-task'
+
+
+== Setup
+
+    Motion::Project::App.setup do |app|
+      app.hockeyapp do
+        set :api_token, '2fc2daaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        set :beta_id, '83be1aaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        set :live_id, '90a35aaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        set :status, "2"
+        set :notify, "0"
+        set :notes_type, "1"
+      end
+    end
+
+   You can retrieve the values in your HockeyApp account page.
+   Refer to http://support.hockeyapp.net/kb/api/api-upload-new-apps for Upload API options.
+
+== Usage
+
+motion-hockeyapp-task introduces a +hockeyapp+ Rake task to your project, which can be used to upload a build. The +notes+ parameter may be provided, and its content will be used as the submission release notes.
+
+Runs "archive":
+
+  $ notes="release notes here" rake hockeyapp
+
+Runs "archive:distribution":
+
+  $ notes="release notes here" mode="release" rake hockeyapp
+
+== License
+
+  Copyright (c) 2014, Joe Noon <joenoon@gmail.com>
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met: 
+  
+  1. Redistributions of source code must retain the above copyright notice, this
+     list of conditions and the following disclaimer. 
+  2. Redistributions in binary form must reproduce the above copyright notice,
+     this list of conditions and the following disclaimer in the documentation
+     and/or other materials provided with the distribution. 
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
